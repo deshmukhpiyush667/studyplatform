@@ -26,7 +26,11 @@ function renderQuizCategories() {
   const icons = {
     'quiz_dsa': { icon: 'fa-sitemap', color: '#4f46e5', bg: '#e0e7ff' },
     'quiz_os': { icon: 'fa-microchip', color: '#06b6d4', bg: '#cffafe' },
-    'quiz_dbms': { icon: 'fa-database', color: '#8b5cf6', bg: '#ede9fe' }
+    'quiz_dbms': { icon: 'fa-database', color: '#8b5cf6', bg: '#ede9fe' },
+    'quiz_cn': { icon: 'fa-network-wired', color: '#2563eb', bg: '#dbeafe' },
+    'quiz_se': { icon: 'fa-code-branch', color: '#059669', bg: '#d1fae5' },
+    'quiz_python': { icon: 'fa-terminal', color: '#d97706', bg: '#fef3c7' },
+    'quiz_math': { icon: 'fa-square-root-alt', color: '#db2777', bg: '#fce7f3' }
   };
 
   let html = '';

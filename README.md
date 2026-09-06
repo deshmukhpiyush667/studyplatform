@@ -13,7 +13,7 @@ StudyMate is a modern, student-first productivity platform built with **HTML5, C
    - Bento-style feature grid, benefits breakdown, student feedback testimonials, and interactive FAQ accordion.
 2. **Student Authentication & Onboarding (`login.html`, `register.html`)**:
    - Student session management with password toggles.
-   - **One-Click Demo Account**: Instant login as "Alex Johnson" with preloaded realistic computer science academic seed data.
+   - **One-Click Demo Account**: Instant login as "Payal Deshmukh" with preloaded realistic computer science academic seed data.
 3. **Central Dashboard (`dashboard.html`)**:
    - Dynamic time-of-day greeting, study streak counter, and current date.
    - Key KPIs: Total Tasks, Completed Tasks, Study Hours, Active Goals, CGPA, and Task Completion Rate.
@@ -48,8 +48,8 @@ StudyMate is a modern, student-first productivity platform built with **HTML5, C
     - Customizable Focus (25m), Short Break (5m), and Long Break (15m) intervals.
     - SVG circular countdown ring, browser tab time indicator, Web Audio API chime, and automatic session logger.
 12. **Revision Quizzes (`quiz.html`)**:
-    - Subject-based MCQ quizzes (DSA, OS, DBMS) with timer and question progress.
-    - Instant score calculation with percentage circle and comprehensive question review with explanations.
+    - Subject-based MCQ quiz test engine with **30+ questions per subject** across 7 core disciplines: Data Structures & Algorithms, Operating Systems, DBMS, Computer Networks, Software Engineering, Python Programming, and Mathematics.
+    - Timer, live progress bar, instant grading, circular score breakdown, and in-depth explanations for every answer.
 13. **Marks & GPA/CGPA Calculator (`gpa.html`)**:
     - Supports both 4.0 and 10.0 scale grading systems.
     - Dynamic course rows with credit weighting, grade selection, honors classification, and semester archiving.
@@ -134,26 +134,44 @@ study_mate/
 
 Because StudyMate is built with pure HTML, CSS, and vanilla JavaScript, **no build tools or compilation steps are required**.
 
-### Option 1: Direct File Launch
+### Option 1: Built-in Node.js Server (Recommended)
+Run the lightweight built-in zero-dependency server:
+```bash
+node server.js
+```
+Then visit:
+- **Landing Page**: `http://localhost:3000/` or `http://localhost:3000/index.html`
+- **Dashboard**: `http://localhost:3000/dashboard.html`
+
+### Option 2: Direct File Launch
 Simply double click `index.html` or open it directly in any modern web browser (Chrome, Edge, Firefox, Safari).
 
-### Option 2: Using VS Code Live Server
+### Option 3: Using VS Code Live Server
 1. Open the `study_mate` directory in Visual Studio Code.
 2. Install the **Live Server** extension.
 3. Right click `index.html` and select **"Open with Live Server"**.
 
-### Option 3: Python HTTP Server
-Run the following in your terminal:
+### Option 4: Python HTTP Server
 ```bash
-# Python 3
 python -m http.server 8000
 ```
 Then navigate to `http://localhost:8000`.
 
-### Option 4: Node.js (npx serve)
-```bash
-npx serve .
-```
+---
+
+## 🌐 Deployment (Vercel, GitHub Pages, Netlify)
+
+StudyMate is a **100% pure static web application** (HTML5, CSS3, Vanilla JS). It requires no build step, no npm install, and no compile process.
+
+### Deploying to Vercel
+1. Import your GitHub repository into [Vercel](https://vercel.com).
+2. Framework Preset: **Other** (leave build command empty, output directory as `./` or root).
+3. Click **Deploy**. Vercel will immediately publish the site with zero configuration!
+
+### Deploying to GitHub Pages
+1. Go to your repository **Settings** -> **Pages**.
+2. Source: **Deploy from a branch**.
+3. Branch: `main` / `root`. Click **Save**.
 
 ---
 

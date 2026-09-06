@@ -13,8 +13,8 @@ const AuthService = {
     const profile = ProfileService.getProfile();
     return {
       id: profile.id || "stu_101",
-      name: profile.name || "Alex Johnson",
-      email: profile.email || "alex.johnson@university.edu",
+      name: profile.name || "Payal Deshmukh",
+      email: profile.email || "payal.deshmukh@university.edu",
       role: "Student",
       isLoggedIn: true
     };

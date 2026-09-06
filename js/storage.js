@@ -91,7 +91,52 @@ const StorageService = {
     const existingStudent = LocalStorageEngine.getItem(STORAGE_KEYS.STUDENT);
     if (!existingStudent) {
       this.resetToDefaults();
+      return;
     }
+
+    let mock = typeof STUDYMATE_MOCK_DATA !== 'undefined' ? STUDYMATE_MOCK_DATA : null;
+    if (!mock && typeof require !== 'undefined') {
+      try {
+        mock = require('./mock-data.js').STUDYMATE_MOCK_DATA;
+      } catch (e) {}
+    }
+
+    // Auto-migrate if old demo user Alex Johnson is cached
+    try {
+      const student = JSON.parse(existingStudent);
+      if (student && student.name === 'Alex Johnson') {
+        student.name = 'Payal Deshmukh';
+        student.email = 'payal.deshmukh@university.edu';
+        student.avatar = 'PD';
+        student.college = 'Institute of Technology & Engineering';
+        LocalStorageEngine.setItem(STORAGE_KEYS.STUDENT, JSON.stringify(student));
+      }
+    } catch (e) {}
+
+    // Auto-update auth session if it was Alex Johnson
+    try {
+      const existingAuth = LocalStorageEngine.getItem(STORAGE_KEYS.AUTH);
+      if (existingAuth) {
+        const authUser = JSON.parse(existingAuth);
+        if (authUser && authUser.name === 'Alex Johnson') {
+          authUser.name = 'Payal Deshmukh';
+          authUser.email = 'payal.deshmukh@university.edu';
+          authUser.avatar = 'PD';
+          LocalStorageEngine.setItem(STORAGE_KEYS.AUTH, JSON.stringify(authUser));
+        }
+      }
+    } catch (e) {}
+
+    // Auto-migrate quiz bank if it has fewer than 7 subjects or fewer than 30 questions
+    try {
+      const existingQuizzesStr = LocalStorageEngine.getItem(STORAGE_KEYS.QUIZZES);
+      const quizzes = existingQuizzesStr ? JSON.parse(existingQuizzesStr) : null;
+      if (!quizzes || quizzes.length < 7 || (quizzes[0] && quizzes[0].questions && quizzes[0].questions.length < 30)) {
+        if (mock && mock.quizzes) {
+          LocalStorageEngine.setItem(STORAGE_KEYS.QUIZZES, JSON.stringify(mock.quizzes));
+        }
+      }
+    } catch (e) {}
   },
 
   resetToDefaults() {

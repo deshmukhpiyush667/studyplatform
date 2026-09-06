@@ -172,8 +172,8 @@ const StudyMate = {
     const avatarEls = document.querySelectorAll('.user-avatar-display');
     const courseEls = document.querySelectorAll('.user-course-display');
 
-    nameEls.forEach(el => el.textContent = profile.name || 'Alex Johnson');
-    avatarEls.forEach(el => el.textContent = profile.avatar || 'AJ');
+    nameEls.forEach(el => el.textContent = profile.name || 'Payal Deshmukh');
+    avatarEls.forEach(el => el.textContent = profile.avatar || 'PD');
     courseEls.forEach(el => el.textContent = profile.course || 'B.Tech CSE');
   },
 

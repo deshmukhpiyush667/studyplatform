@@ -27,12 +27,12 @@ function renderProfileInfo() {
   const bioEl = document.getElementById('prof-bio');
   const joinedEl = document.getElementById('prof-joined');
 
-  if (nameEl) nameEl.textContent = profile.name || 'Alex Johnson';
-  if (emailEl) emailEl.textContent = profile.email || 'alex.johnson@university.edu';
+  if (nameEl) nameEl.textContent = profile.name || 'Payal Deshmukh';
+  if (emailEl) emailEl.textContent = profile.email || 'payal.deshmukh@university.edu';
   if (courseEl) courseEl.textContent = profile.course || 'B.Tech Computer Science';
-  if (collegeEl) collegeEl.textContent = profile.college || 'Institute of Technology';
+  if (collegeEl) collegeEl.textContent = profile.college || 'Institute of Technology & Engineering';
   if (semEl) semEl.textContent = profile.semester || 'Semester 6';
-  if (avatarEl) avatarEl.textContent = profile.avatar || 'AJ';
+  if (avatarEl) avatarEl.textContent = profile.avatar || 'PD';
   if (bioEl) bioEl.textContent = profile.bio || 'Organized and goal-oriented student.';
   if (joinedEl) joinedEl.textContent = profile.joinedDate ? `Joined ${profile.joinedDate}` : 'Member since 2025';
 }
