@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyMate - Study Planner & Timetable</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/modules.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-link">
+          <img src="assets/logo.svg" alt="StudyMate Logo" class="brand-logo">
+          <span>Study<span class="brand-highlight">Mate</span></span>
+        </a>
+      </div>
+
+      <div class="sidebar-nav-container">
+        <div>
+          <div class="nav-group-title">Main</div>
+          <ul class="nav-list">
+            <li><a href="dashboard.html" class="nav-link"><i class="fas fa-th-large"></i> <span>Dashboard</span></a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-group-title">Academics</div>
+          <ul class="nav-list">
+            <li><a href="notes.html" class="nav-link"><i class="fas fa-sticky-note"></i> <span>Notes & Summaries</span></a></li>
+            <li><a href="tasks.html" class="nav-link"><i class="fas fa-tasks"></i> <span>Tasks & Assignments</span></a></li>
+            <li><a href="planner.html" class="nav-link active"><i class="fas fa-calendar-alt"></i> <span>Study Planner</span></a></li>
+            <li><a href="materials.html" class="nav-link"><i class="fas fa-folder-open"></i> <span>Study Materials</span></a></li>
+            <li><a href="resources.html" class="nav-link"><i class="fas fa-graduation-cap"></i> <span>Learning Resources</span></a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-group-title">Performance & Tools</div>
+          <ul class="nav-list">
+            <li><a href="goals.html" class="nav-link"><i class="fas fa-bullseye"></i> <span>Study Goals</span></a></li>
+            <li><a href="progress.html" class="nav-link"><i class="fas fa-chart-line"></i> <span>Progress Tracking</span></a></li>
+            <li><a href="timer.html" class="nav-link"><i class="fas fa-stopwatch"></i> <span>Pomodoro Timer</span></a></li>
+            <li><a href="quiz.html" class="nav-link"><i class="fas fa-spell-check"></i> <span>Revision Quizzes</span></a></li>
+            <li><a href="gpa.html" class="nav-link"><i class="fas fa-calculator"></i> <span>Marks & GPA</span></a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-group-title">Account</div>
+          <ul class="nav-list">
+            <li><a href="profile.html" class="nav-link"><i class="fas fa-user-circle"></i> <span>Student Profile</span></a></li>
+            <li><a href="settings.html" class="nav-link"><i class="fas fa-cog"></i> <span>Settings & Data</span></a></li>
+            <li><a href="index.html#faq" class="nav-link"><i class="fas fa-question-circle"></i> <span>Help & FAQ</span></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-card" onclick="window.location.href='profile.html'">
+          <div class="user-avatar user-avatar-display">AJ</div>
+          <div class="user-info">
+            <div class="user-name user-name-display">Alex Johnson</div>
+            <div class="user-role user-course-display">B.Tech CSE</div>
+          </div>
+          <a href="javascript:void(0)" onclick="event.stopPropagation(); AuthService.logout();" title="Log Out" style="color: var(--text-muted);">
+            <i class="fas fa-sign-out-alt"></i>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+          <div class="search-trigger">
+            <i class="fas fa-search"></i>
+            <span>Search notes, tasks, materials...</span>
+            <kbd class="search-kbd">Ctrl K</kbd>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <button class="btn btn-primary btn-sm" id="add-session-btn">
+            <i class="fas fa-calendar-plus"></i> Schedule Session
+          </button>
+          <button class="icon-btn theme-toggle-btn" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+          <div style="position: relative;">
+            <button class="icon-btn" id="notifications-btn" title="Notifications"><i class="fas fa-bell"></i><span class="badge-dot"></span></button>
+            <div class="dropdown-menu" id="notifications-dropdown" style="width: 320px;"></div>
+          </div>
+          <a href="profile.html" class="icon-btn user-avatar-display" style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; font-weight: 700; border: none;">AJ</a>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Study Planner & Timetable</h1>
+            <p class="page-subtitle">Structure your daily and weekly study routines, lectures, and focused revision.</p>
+          </div>
+          <div class="header-actions">
+            <div class="filter-group">
+              <button class="btn btn-sm btn-secondary active" id="view-weekly-btn">
+                <i class="fas fa-th"></i> Weekly View
+              </button>
+              <button class="btn btn-sm btn-secondary" id="view-daily-btn">
+                <i class="fas fa-calendar-day"></i> Daily View
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Timetable Container -->
+        <div id="planner-timetable-container">
+          <!-- Dynamically loaded -->
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/mock-data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/planner.js"></script>
+</body>
+</html>

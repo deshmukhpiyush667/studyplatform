@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyMate - Student Dashboard</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-link">
+          <img src="assets/logo.svg" alt="StudyMate Logo" class="brand-logo">
+          <span>Study<span class="brand-highlight">Mate</span></span>
+        </a>
+      </div>
+
+      <div class="sidebar-nav-container">
+        <!-- Main Group -->
+        <div>
+          <div class="nav-group-title">Main</div>
+          <ul class="nav-list">
+            <li>
+              <a href="dashboard.html" class="nav-link active">
+                <i class="fas fa-th-large"></i> <span>Dashboard</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Academics Group -->
+        <div>
+          <div class="nav-group-title">Academics</div>
+          <ul class="nav-list">
+            <li>
+              <a href="notes.html" class="nav-link">
+                <i class="fas fa-sticky-note"></i> <span>Notes & Summaries</span>
+                <span class="nav-badge" id="nav-note-badge">5</span>
+              </a>
+            </li>
+            <li>
+              <a href="tasks.html" class="nav-link">
+                <i class="fas fa-tasks"></i> <span>Tasks & Assignments</span>
+                <span class="nav-badge warning" id="nav-task-badge">5</span>
+              </a>
+            </li>
+            <li>
+              <a href="planner.html" class="nav-link">
+                <i class="fas fa-calendar-alt"></i> <span>Study Planner</span>
+              </a>
+            </li>
+            <li>
+              <a href="materials.html" class="nav-link">
+                <i class="fas fa-folder-open"></i> <span>Study Materials</span>
+              </a>
+            </li>
+            <li>
+              <a href="resources.html" class="nav-link">
+                <i class="fas fa-graduation-cap"></i> <span>Learning Resources</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Performance & Tools -->
+        <div>
+          <div class="nav-group-title">Performance & Tools</div>
+          <ul class="nav-list">
+            <li>
+              <a href="goals.html" class="nav-link">
+                <i class="fas fa-bullseye"></i> <span>Study Goals</span>
+              </a>
+            </li>
+            <li>
+              <a href="progress.html" class="nav-link">
+                <i class="fas fa-chart-line"></i> <span>Progress Tracking</span>
+              </a>
+            </li>
+            <li>
+              <a href="timer.html" class="nav-link">
+                <i class="fas fa-stopwatch"></i> <span>Pomodoro Timer</span>
+              </a>
+            </li>
+            <li>
+              <a href="quiz.html" class="nav-link">
+                <i class="fas fa-spell-check"></i> <span>Revision Quizzes</span>
+              </a>
+            </li>
+            <li>
+              <a href="gpa.html" class="nav-link">
+                <i class="fas fa-calculator"></i> <span>Marks & GPA</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- System & Account -->
+        <div>
+          <div class="nav-group-title">Account</div>
+          <ul class="nav-list">
+            <li>
+              <a href="profile.html" class="nav-link">
+                <i class="fas fa-user-circle"></i> <span>Student Profile</span>
+              </a>
+            </li>
+            <li>
+              <a href="settings.html" class="nav-link">
+                <i class="fas fa-cog"></i> <span>Settings & Data</span>
+              </a>
+            </li>
+            <li>
+              <a href="index.html#faq" class="nav-link">
+                <i class="fas fa-question-circle"></i> <span>Help & FAQ</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-card" onclick="window.location.href='profile.html'">
+          <div class="user-avatar user-avatar-display">AJ</div>
+          <div class="user-info">
+            <div class="user-name user-name-display">Alex Johnson</div>
+            <div class="user-role user-course-display">B.Tech CSE</div>
+          </div>
+          <a href="javascript:void(0)" onclick="event.stopPropagation(); AuthService.logout();" title="Log Out" style="color: var(--text-muted);">
+            <i class="fas fa-sign-out-alt"></i>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <!-- Sticky Topbar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn" aria-label="Toggle Sidebar Navigation">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="search-trigger">
+            <i class="fas fa-search"></i>
+            <span>Search notes, tasks, materials...</span>
+            <kbd class="search-kbd">Ctrl K</kbd>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <!-- Quick Add Dropdown -->
+          <button class="quick-add-btn" onclick="openDashAddTaskModal()">
+            <i class="fas fa-plus"></i> <span>Add Task</span>
+          </button>
+
+          <!-- Theme Toggle -->
+          <button class="icon-btn theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+            <i class="fas fa-moon"></i>
+          </button>
+
+          <!-- Notifications Bell -->
+          <div style="position: relative;">
+            <button class="icon-btn" id="notifications-btn" title="Notifications" aria-label="Notifications">
+              <i class="fas fa-bell"></i>
+              <span class="badge-dot"></span>
+            </button>
+            <div class="dropdown-menu" id="notifications-dropdown" style="width: 320px;"></div>
+          </div>
+
+          <!-- User Avatar Pill -->
+          <a href="profile.html" class="icon-btn user-avatar-display" style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; font-weight: 700; border: none;" title="View Profile">
+            AJ
+          </a>
+        </div>
+      </header>
+
+      <!-- Dashboard Content Body -->
+      <main class="content-body">
+        <!-- Welcome Banner -->
+        <div class="welcome-banner">
+          <div class="welcome-text">
+            <h1 id="dash-greeting">Good day, Alex! 👋</h1>
+            <p>Welcome to your study hub. You have upcoming assignments due this week. Keep up the momentum!</p>
+            <div style="margin-top: 1rem; font-size: 0.85rem; display: flex; align-items: center; gap: 0.5rem; opacity: 0.95;">
+              <i class="far fa-calendar-alt"></i> <span id="dash-date">Monday, Sep 6, 2026</span>
+            </div>
+          </div>
+          <div class="welcome-stats-pill">
+            <div class="welcome-stat-item">
+              <div class="welcome-stat-icon"><i class="fas fa-fire" style="color: #fef08a;"></i></div>
+              <div class="welcome-stat-info">
+                <span>Current Streak</span>
+                <strong id="dash-streak-count">12 Days</strong>
+              </div>
+            </div>
+            <div style="width: 1px; height: 35px; background: rgba(255, 255, 255, 0.25);"></div>
+            <div class="welcome-stat-item">
+              <div class="welcome-stat-icon"><i class="fas fa-clock" style="color: #67e8f9;"></i></div>
+              <div class="welcome-stat-info">
+                <span>Today's Focus</span>
+                <strong id="dash-hours-today">3.5 hrs</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions Bar -->
+        <div class="quick-actions-bar">
+          <a href="javascript:void(0)" class="quick-action-item" id="qa-add-task">
+            <div class="quick-action-icon" style="background: var(--primary-light); color: var(--primary);">
+              <i class="fas fa-plus-circle"></i>
+            </div>
+            <span class="quick-action-label">Add Task</span>
+          </a>
+          <a href="javascript:void(0)" class="quick-action-item" id="qa-add-note">
+            <div class="quick-action-icon" style="background: var(--secondary-light); color: var(--secondary);">
+              <i class="fas fa-edit"></i>
+            </div>
+            <span class="quick-action-label">Create Note</span>
+          </a>
+          <a href="javascript:void(0)" class="quick-action-item" id="qa-add-session">
+            <div class="quick-action-icon" style="background: var(--accent-light); color: var(--accent);">
+              <i class="fas fa-calendar-plus"></i>
+            </div>
+            <span class="quick-action-label">Add Session</span>
+          </a>
+          <a href="timer.html" class="quick-action-item">
+            <div class="quick-action-icon" style="background: var(--warning-light); color: var(--warning);">
+              <i class="fas fa-play"></i>
+            </div>
+            <span class="quick-action-label">Start Timer</span>
+          </a>
+          <a href="quiz.html" class="quick-action-item">
+            <div class="quick-action-icon" style="background: var(--success-light); color: var(--success);">
+              <i class="fas fa-spell-check"></i>
+            </div>
+            <span class="quick-action-label">Take Quiz</span>
+          </a>
+          <a href="goals.html?action=new" class="quick-action-item">
+            <div class="quick-action-icon" style="background: #fee2e2; color: #ef4444;">
+              <i class="fas fa-bullseye"></i>
+            </div>
+            <span class="quick-action-label">Add Goal</span>
+          </a>
+        </div>
+
+        <!-- KPI Metric Cards Grid -->
+        <div class="stats-cards-grid">
+          <!-- Card 1: Tasks -->
+          <div class="metric-card">
+            <div class="metric-data">
+              <div class="metric-label">Tasks & Deadlines</div>
+              <div class="metric-value" id="kpi-total-tasks">6</div>
+              <div class="metric-trend text-warning" id="kpi-completion-rate">
+                <i class="fas fa-spinner"></i> In Progress
+              </div>
+            </div>
+            <div class="metric-icon-box" style="background: var(--primary-light); color: var(--primary);">
+              <i class="fas fa-tasks"></i>
+            </div>
+          </div>
+
+          <!-- Card 2: Completed -->
+          <div class="metric-card">
+            <div class="metric-data">
+              <div class="metric-label">Completed Tasks</div>
+              <div class="metric-value" id="kpi-completed-tasks">1</div>
+              <div class="metric-trend text-success">
+                <i class="fas fa-check-circle"></i> On Track
+              </div>
+            </div>
+            <div class="metric-icon-box" style="background: var(--success-light); color: var(--success);">
+              <i class="fas fa-clipboard-check"></i>
+            </div>
+          </div>
+
+          <!-- Card 3: Total Study Hours -->
+          <div class="metric-card">
+            <div class="metric-data">
+              <div class="metric-label">Total Study Hours</div>
+              <div class="metric-value" id="kpi-study-hours">142.5h</div>
+              <div class="metric-trend text-primary">
+                <i class="fas fa-chart-line"></i> +12.5h this week
+              </div>
+            </div>
+            <div class="metric-icon-box" style="background: var(--accent-light); color: var(--accent);">
+              <i class="fas fa-clock"></i>
+            </div>
+          </div>
+
+          <!-- Card 4: Current CGPA -->
+          <div class="metric-card">
+            <div class="metric-data">
+              <div class="metric-label">Current CGPA</div>
+              <div class="metric-value" id="kpi-gpa">3.82</div>
+              <div class="metric-trend text-success">
+                <i class="fas fa-star"></i> High Honors
+              </div>
+            </div>
+            <div class="metric-icon-box" style="background: var(--warning-light); color: var(--warning);">
+              <i class="fas fa-award"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Dashboard 2-Column Grid -->
+        <div class="dashboard-grid">
+          <!-- Left Column: Charts & Timetable -->
+          <div class="dashboard-col">
+            <!-- Weekly Study Hours Chart -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <i class="fas fa-chart-bar text-primary"></i> Weekly Study Distribution
+                </div>
+                <a href="progress.html" class="btn btn-sm btn-outline">Detailed Analytics <i class="fas fa-arrow-right"></i></a>
+              </div>
+              <div class="card-body">
+                <div style="height: 250px; position: relative;">
+                  <canvas id="studyHoursWeeklyChart"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <!-- Today's Timetable Widget -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <i class="fas fa-calendar-day text-primary"></i> Today's Schedule & Sessions
+                </div>
+                <a href="planner.html" class="btn btn-sm btn-secondary">Open Planner</a>
+              </div>
+              <div class="card-body" id="dash-schedule-container">
+                <!-- Dynamically loaded -->
+              </div>
+            </div>
+
+            <!-- Subject Breakdown Doughnut Chart -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <i class="fas fa-pie-chart text-secondary"></i> Subject Focus Distribution
+                </div>
+              </div>
+              <div class="card-body">
+                <div style="height: 220px; position: relative;">
+                  <canvas id="subjectTimeChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Upcoming Deadlines, Recent Notes, Badges -->
+          <div class="dashboard-col">
+            <!-- Upcoming Deadlines Card -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <i class="fas fa-exclamation-circle text-danger"></i> Upcoming Deadlines
+                </div>
+                <a href="tasks.html" class="btn btn-sm btn-outline">All Tasks</a>
+              </div>
+              <div class="card-body" id="dash-deadlines-container">
+                <!-- Dynamically loaded -->
+              </div>
+            </div>
+
+            <!-- Recent Notes Widget -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <i class="fas fa-sticky-note text-warning"></i> Recent Study Notes
+                </div>
+                <a href="notes.html" class="btn btn-sm btn-secondary">Browse All</a>
+              </div>
+              <div class="card-body">
+                <div class="recent-notes-grid" id="dash-recent-notes">
+                  <!-- Dynamically loaded -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Productivity Achievements Row -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <i class="fas fa-trophy text-warning"></i> Productivity Badges
+                </div>
+                <a href="profile.html" class="btn btn-sm btn-outline">All Badges</a>
+              </div>
+              <div class="card-body">
+                <div class="badges-container" id="dash-badges-container">
+                  <!-- Dynamically loaded -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Core Scripts -->
+  <script src="js/mock-data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

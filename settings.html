@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyMate - Settings & Data Management</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/modules.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-link">
+          <img src="assets/logo.svg" alt="StudyMate Logo" class="brand-logo">
+          <span>Study<span class="brand-highlight">Mate</span></span>
+        </a>
+      </div>
+
+      <div class="sidebar-nav-container">
+        <div>
+          <div class="nav-group-title">Main</div>
+          <ul class="nav-list">
+            <li><a href="dashboard.html" class="nav-link"><i class="fas fa-th-large"></i> <span>Dashboard</span></a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-group-title">Academics</div>
+          <ul class="nav-list">
+            <li><a href="notes.html" class="nav-link"><i class="fas fa-sticky-note"></i> <span>Notes & Summaries</span></a></li>
+            <li><a href="tasks.html" class="nav-link"><i class="fas fa-tasks"></i> <span>Tasks & Assignments</span></a></li>
+            <li><a href="planner.html" class="nav-link"><i class="fas fa-calendar-alt"></i> <span>Study Planner</span></a></li>
+            <li><a href="materials.html" class="nav-link"><i class="fas fa-folder-open"></i> <span>Study Materials</span></a></li>
+            <li><a href="resources.html" class="nav-link"><i class="fas fa-graduation-cap"></i> <span>Learning Resources</span></a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-group-title">Performance & Tools</div>
+          <ul class="nav-list">
+            <li><a href="goals.html" class="nav-link"><i class="fas fa-bullseye"></i> <span>Study Goals</span></a></li>
+            <li><a href="progress.html" class="nav-link"><i class="fas fa-chart-line"></i> <span>Progress Tracking</span></a></li>
+            <li><a href="timer.html" class="nav-link"><i class="fas fa-stopwatch"></i> <span>Pomodoro Timer</span></a></li>
+            <li><a href="quiz.html" class="nav-link"><i class="fas fa-spell-check"></i> <span>Revision Quizzes</span></a></li>
+            <li><a href="gpa.html" class="nav-link"><i class="fas fa-calculator"></i> <span>Marks & GPA</span></a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-group-title">Account</div>
+          <ul class="nav-list">
+            <li><a href="profile.html" class="nav-link"><i class="fas fa-user-circle"></i> <span>Student Profile</span></a></li>
+            <li><a href="settings.html" class="nav-link active"><i class="fas fa-cog"></i> <span>Settings & Data</span></a></li>
+            <li><a href="index.html#faq" class="nav-link"><i class="fas fa-question-circle"></i> <span>Help & FAQ</span></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-card" onclick="window.location.href='profile.html'">
+          <div class="user-avatar user-avatar-display">AJ</div>
+          <div class="user-info">
+            <div class="user-name user-name-display">Alex Johnson</div>
+            <div class="user-role user-course-display">B.Tech CSE</div>
+          </div>
+          <a href="javascript:void(0)" onclick="event.stopPropagation(); AuthService.logout();" title="Log Out" style="color: var(--text-muted);">
+            <i class="fas fa-sign-out-alt"></i>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+          <div class="search-trigger">
+            <i class="fas fa-search"></i>
+            <span>Search notes, tasks, materials...</span>
+            <kbd class="search-kbd">Ctrl K</kbd>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <button class="icon-btn theme-toggle-btn" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+          <div style="position: relative;">
+            <button class="icon-btn" id="notifications-btn" title="Notifications"><i class="fas fa-bell"></i><span class="badge-dot"></span></button>
+            <div class="dropdown-menu" id="notifications-dropdown" style="width: 320px;"></div>
+          </div>
+          <a href="profile.html" class="icon-btn user-avatar-display" style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; font-weight: 700; border: none;">AJ</a>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Settings & Data Management</h1>
+            <p class="page-subtitle">Configure theme preferences, notification reminders, export JSON backups, and review future backend architecture.</p>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 2rem; max-width: 960px;">
+          <!-- 1. Theme & Appearance -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i class="fas fa-palette text-primary"></i> Appearance & Theme</h3>
+            </div>
+            <div class="card-body">
+              <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1.25rem;">Choose your preferred display theme. Your choice is persisted across page navigation and browser sessions.</p>
+              
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <label style="display: flex; align-items: center; gap: 1rem; padding: 1.25rem; border: 2px solid var(--border); border-radius: var(--radius-lg); cursor: pointer; background: #ffffff; color: #0f172a;">
+                  <input type="radio" name="theme-choice" value="light" style="transform: scale(1.2);">
+                  <div>
+                    <div style="font-weight: 700; font-size: 1rem;"><i class="fas fa-sun text-warning"></i> Light Mode</div>
+                    <div style="font-size: 0.8rem; color: #64748b;">Clean, high-contrast slate background for daytime study</div>
+                  </div>
+                </label>
+
+                <label style="display: flex; align-items: center; gap: 1rem; padding: 1.25rem; border: 2px solid var(--border); border-radius: var(--radius-lg); cursor: pointer; background: #111827; color: #f8fafc;">
+                  <input type="radio" name="theme-choice" value="dark" style="transform: scale(1.2);">
+                  <div>
+                    <div style="font-weight: 700; font-size: 1rem;"><i class="fas fa-moon text-primary"></i> Dark Mode</div>
+                    <div style="font-size: 0.8rem; color: #94a3b8;">Deep midnight palette for late-night focus sessions</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Notification Preferences -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i class="fas fa-bell text-secondary"></i> Notification & Reminder Preferences</h3>
+            </div>
+            <div class="card-body">
+              <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+                <label style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
+                  <div>
+                    <div style="font-weight: 700; font-size: 0.95rem;">Assignment Due Date Warnings</div>
+                    <div style="font-size: 0.82rem; color: var(--text-muted);">Notify when coursework is due within 48 hours or becomes overdue</div>
+                  </div>
+                  <input type="checkbox" checked style="transform: scale(1.3); cursor: pointer;">
+                </label>
+
+                <label style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
+                  <div>
+                    <div style="font-weight: 700; font-size: 0.95rem;">Study Streak Motivation</div>
+                    <div style="font-size: 0.82rem; color: var(--text-muted);">Daily reminders to log at least one focus session to preserve your streak</div>
+                  </div>
+                  <input type="checkbox" checked style="transform: scale(1.3); cursor: pointer;">
+                </label>
+
+                <label style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
+                  <div>
+                    <div style="font-weight: 700; font-size: 0.95rem;">Pomodoro Completion Audio Chime</div>
+                    <div style="font-size: 0.82rem; color: var(--text-muted);">Play Web Audio chime when focus intervals or breaks complete</div>
+                  </div>
+                  <input type="checkbox" checked style="transform: scale(1.3); cursor: pointer;">
+                </label>
+              </div>
+              <div style="margin-top: 1.5rem; text-align: right;">
+                <button class="btn btn-primary btn-sm" id="save-notif-prefs-btn">Save Preferences</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Data Management & Backups -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i class="fas fa-database text-success"></i> Data Storage & Backup Management</h3>
+            </div>
+            <div class="card-body">
+              <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1.5rem;">StudyMate saves everything locally in your browser. You can export a JSON backup file to transfer your data across devices, or restore demo content.</p>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.5rem;">
+                <div style="padding: 1.25rem; background: var(--bg-surface-subtle); border-radius: var(--radius-lg); border: 1px solid var(--border);">
+                  <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem;"><i class="fas fa-file-export text-primary"></i> Export All Data</h4>
+                  <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1rem;">Download a complete JSON snapshot containing all your notes, tasks, timetable, materials, and GPA records.</p>
+                  <button class="btn btn-outline btn-sm" id="export-data-btn">
+                    <i class="fas fa-download"></i> Export JSON Backup
+                  </button>
+                </div>
+
+                <div style="padding: 1.25rem; background: var(--bg-surface-subtle); border-radius: var(--radius-lg); border: 1px solid var(--border);">
+                  <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem;"><i class="fas fa-file-import text-secondary"></i> Import Data</h4>
+                  <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1rem;">Upload a previously exported StudyMate JSON file to restore your entire workspace.</p>
+                  <label class="btn btn-outline btn-sm" style="display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                    <i class="fas fa-upload"></i> Choose File to Import
+                    <input type="file" id="import-json-file" accept=".json" style="display: none;">
+                  </label>
+                </div>
+              </div>
+
+              <!-- Danger Zone -->
+              <div style="padding: 1.5rem; background: var(--danger-light); border-radius: var(--radius-lg); border: 1px solid var(--danger);">
+                <h4 style="color: var(--danger); font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem;">
+                  <i class="fas fa-exclamation-triangle"></i> Reset & Danger Zone
+                </h4>
+                <p style="font-size: 0.84rem; color: var(--text-main); margin-bottom: 1rem;">
+                  Need to start fresh or restore initial computer science demo data? Choose an option below.
+                </p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                  <button class="btn btn-secondary btn-sm" id="restore-defaults-btn">
+                    <i class="fas fa-redo"></i> Restore Default Demo Data
+                  </button>
+                  <button class="btn btn-danger btn-sm" id="clear-all-data-btn">
+                    <i class="fas fa-trash-alt"></i> Clear All Data
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Future Backend Architecture (Java Spring Boot + MySQL) -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i class="fas fa-server text-accent"></i> Future Spring Boot + MySQL Integration Blueprint</h3>
+              <span class="badge badge-info">Architecture Guide</span>
+            </div>
+            <div class="card-body">
+              <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.25rem;">
+                StudyMate's frontend is architected using a decoupled Repository Service Layer in <code>js/storage.js</code>. Connecting a production <strong>Java Spring Boot 3.x + MySQL 8.0</strong> backend requires zero modifications to UI HTML templates. Simply configure the storage engine to dispatch <code>fetch()</code> requests to the REST controllers outlined below.
+              </p>
+
+              <div class="table-responsive">
+                <table class="table gpa-table" style="font-size: 0.84rem;">
+                  <thead>
+                    <tr>
+                      <th>Module</th>
+                      <th>HTTP Method</th>
+                      <th>Spring Boot Endpoint</th>
+                      <th>JPA Entity / MySQL Table</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Auth</strong></td>
+                      <td><code>POST</code></td>
+                      <td><code>/api/v1/auth/login</code>, <code>/register</code></td>
+                      <td><code>User (id, email, password_hash, role)</code></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Notes</strong></td>
+                      <td><code>GET/POST/PUT/DELETE</code></td>
+                      <td><code>/api/v1/notes</code></td>
+                      <td><code>Note (id, title, content, subject, is_pinned)</code></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Tasks</strong></td>
+                      <td><code>GET/POST/PUT/DELETE</code></td>
+                      <td><code>/api/v1/tasks</code></td>
+                      <td><code>Task (id, title, priority, due_date, completed)</code></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Planner</strong></td>
+                      <td><code>GET/POST/PUT/DELETE</code></td>
+                      <td><code>/api/v1/schedules</code></td>
+                      <td><code>Schedule (id, day, start_time, end_time, activity)</code></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Materials</strong></td>
+                      <td><code>GET/POST/DELETE</code></td>
+                      <td><code>/api/v1/materials</code></td>
+                      <td><code>Material (id, title, url, type, category)</code></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Goals</strong></td>
+                      <td><code>GET/POST/PUT/DELETE</code></td>
+                      <td><code>/api/v1/goals</code></td>
+                      <td><code>Goal (id, title, progress, target_date)</code></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Quizzes</strong></td>
+                      <td><code>GET / POST</code></td>
+                      <td><code>/api/v1/quizzes/results</code></td>
+                      <td><code>QuizResult (id, quiz_subject, score, total)</code></td>
+                    </tr>
+                    <tr>
+                      <td><strong>GPA</strong></td>
+                      <td><code>GET / POST</code></td>
+                      <td><code>/api/v1/gpa/semesters</code></td>
+                      <td><code>Semester (id, semester_name, sgpa, credits)</code></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/mock-data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/settings.js"></script>
+</body>
+</html>

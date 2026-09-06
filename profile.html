@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyMate - Student Profile & Achievements</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/modules.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-link">
+          <img src="assets/logo.svg" alt="StudyMate Logo" class="brand-logo">
+          <span>Study<span class="brand-highlight">Mate</span></span>
+        </a>
+      </div>
+
+      <div class="sidebar-nav-container">
+        <div>
+          <div class="nav-group-title">Main</div>
+          <ul class="nav-list">
+            <li><a href="dashboard.html" class="nav-link"><i class="fas fa-th-large"></i> <span>Dashboard</span></a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-group-title">Academics</div>
+          <ul class="nav-list">
+            <li><a href="notes.html" class="nav-link"><i class="fas fa-sticky-note"></i> <span>Notes & Summaries</span></a></li>
+            <li><a href="tasks.html" class="nav-link"><i class="fas fa-tasks"></i> <span>Tasks & Assignments</span></a></li>
+            <li><a href="planner.html" class="nav-link"><i class="fas fa-calendar-alt"></i> <span>Study Planner</span></a></li>
+            <li><a href="materials.html" class="nav-link"><i class="fas fa-folder-open"></i> <span>Study Materials</span></a></li>
+            <li><a href="resources.html" class="nav-link"><i class="fas fa-graduation-cap"></i> <span>Learning Resources</span></a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-group-title">Performance & Tools</div>
+          <ul class="nav-list">
+            <li><a href="goals.html" class="nav-link"><i class="fas fa-bullseye"></i> <span>Study Goals</span></a></li>
+            <li><a href="progress.html" class="nav-link"><i class="fas fa-chart-line"></i> <span>Progress Tracking</span></a></li>
+            <li><a href="timer.html" class="nav-link"><i class="fas fa-stopwatch"></i> <span>Pomodoro Timer</span></a></li>
+            <li><a href="quiz.html" class="nav-link"><i class="fas fa-spell-check"></i> <span>Revision Quizzes</span></a></li>
+            <li><a href="gpa.html" class="nav-link"><i class="fas fa-calculator"></i> <span>Marks & GPA</span></a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-group-title">Account</div>
+          <ul class="nav-list">
+            <li><a href="profile.html" class="nav-link active"><i class="fas fa-user-circle"></i> <span>Student Profile</span></a></li>
+            <li><a href="settings.html" class="nav-link"><i class="fas fa-cog"></i> <span>Settings & Data</span></a></li>
+            <li><a href="index.html#faq" class="nav-link"><i class="fas fa-question-circle"></i> <span>Help & FAQ</span></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-card" onclick="window.location.href='profile.html'">
+          <div class="user-avatar user-avatar-display">AJ</div>
+          <div class="user-info">
+            <div class="user-name user-name-display">Alex Johnson</div>
+            <div class="user-role user-course-display">B.Tech CSE</div>
+          </div>
+          <a href="javascript:void(0)" onclick="event.stopPropagation(); AuthService.logout();" title="Log Out" style="color: var(--text-muted);">
+            <i class="fas fa-sign-out-alt"></i>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+          <div class="search-trigger">
+            <i class="fas fa-search"></i>
+            <span>Search notes, tasks, materials...</span>
+            <kbd class="search-kbd">Ctrl K</kbd>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <button class="icon-btn theme-toggle-btn" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+          <div style="position: relative;">
+            <button class="icon-btn" id="notifications-btn" title="Notifications"><i class="fas fa-bell"></i><span class="badge-dot"></span></button>
+            <div class="dropdown-menu" id="notifications-dropdown" style="width: 320px;"></div>
+          </div>
+          <a href="profile.html" class="icon-btn user-avatar-display" style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; font-weight: 700; border: none;">AJ</a>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <!-- Profile Banner -->
+        <div class="profile-banner-card">
+          <div class="profile-avatar-big" id="prof-avatar-text">AJ</div>
+          <div style="flex: 1;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+              <div>
+                <h1 style="font-size: 2rem; font-weight: 800;" id="prof-name">Alex Johnson</h1>
+                <p style="opacity: 0.9; font-size: 1.05rem;" id="prof-course">B.Tech Computer Science & Engineering</p>
+              </div>
+              <button class="btn btn-secondary btn-sm" id="edit-profile-btn" style="background: rgba(255, 255, 255, 0.2); color: white; border-color: rgba(255, 255, 255, 0.3);">
+                <i class="fas fa-edit"></i> Edit Profile
+              </button>
+            </div>
+            <div style="display: flex; gap: 1.5rem; margin-top: 1rem; font-size: 0.88rem; opacity: 0.85; flex-wrap: wrap;">
+              <span><i class="fas fa-university"></i> <span id="prof-college">Stanford Institute of Technology</span></span>
+              <span><i class="fas fa-graduation-cap"></i> <span id="prof-semester">Semester 6</span></span>
+              <span><i class="fas fa-envelope"></i> <span id="prof-email">alex.johnson@university.edu</span></span>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.92rem; opacity: 0.9; max-width: 650px; line-height: 1.5;" id="prof-bio">
+              Passionate CS undergrad specializing in Distributed Systems, Algorithms, and Full-Stack Engineering.
+            </p>
+          </div>
+        </div>
+
+        <!-- Academic Key Stats Grid -->
+        <div class="stats-cards-grid">
+          <div class="metric-card">
+            <div class="metric-data">
+              <div class="metric-label">Total Study Hours</div>
+              <div class="metric-value" id="prof-stat-hours">142.5h</div>
+            </div>
+            <div class="metric-icon-box" style="background: var(--primary-light); color: var(--primary);"><i class="fas fa-clock"></i></div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-data">
+              <div class="metric-label">Completed Tasks</div>
+              <div class="metric-value" id="prof-stat-tasks">1</div>
+            </div>
+            <div class="metric-icon-box" style="background: var(--success-light); color: var(--success);"><i class="fas fa-check-double"></i></div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-data">
+              <div class="metric-label">Current Streak</div>
+              <div class="metric-value" id="prof-stat-streak">12d</div>
+            </div>
+            <div class="metric-icon-box" style="background: var(--warning-light); color: var(--warning);"><i class="fas fa-fire"></i></div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-data">
+              <div class="metric-label">Quizzes Completed</div>
+              <div class="metric-value" id="prof-stat-quizzes">2</div>
+            </div>
+            <div class="metric-icon-box" style="background: var(--secondary-light); color: var(--secondary);"><i class="fas fa-spell-check"></i></div>
+          </div>
+        </div>
+
+        <!-- Productivity Badges Section -->
+        <div class="card" style="margin-top: 2rem;">
+          <div class="card-header">
+            <h3 class="card-title"><i class="fas fa-medal text-warning"></i> Productivity Badges & Achievements</h3>
+            <span class="badge badge-success" id="prof-unlocked-badge-count">6 / 8 Unlocked</span>
+          </div>
+          <div class="card-body">
+            <div class="achievements-grid" id="profile-badges-grid">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/mock-data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/profile.js"></script>
+</body>
+</html>
