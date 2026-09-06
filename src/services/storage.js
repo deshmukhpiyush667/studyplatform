@@ -99,6 +99,16 @@ export const StorageService = {
         }
       } catch (e) {}
 
+      // Check and update materials to ensure full multi-chapter handbooks across all subjects
+      try {
+        const rawMaterials = LocalStorageEngine.getItem(STORAGE_KEYS.MATERIALS);
+        const currentMaterials = rawMaterials ? JSON.parse(rawMaterials) : [];
+        const needsMatUpdate = !currentMaterials.length || currentMaterials.length < 7 || !currentMaterials[0].chapters;
+        if (needsMatUpdate) {
+          LocalStorageEngine.setItem(STORAGE_KEYS.MATERIALS, JSON.stringify(STUDYMATE_MOCK_DATA.materials));
+        }
+      } catch (e) {}
+
       // Update auth session if it was Alex Johnson
       try {
         const rawAuth = LocalStorageEngine.getItem(STORAGE_KEYS.AUTH);

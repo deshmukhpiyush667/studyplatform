@@ -2,6 +2,7 @@
  * StudyMate - Realistic Seed & Mock Data (ES Module for React)
  */
 import { EXTENDED_QUIZZES } from './quizBank.js';
+import { STUDY_MATERIALS_BANK } from './studyMaterialBank.js';
 
 export const STUDYMATE_MOCK_DATA = {
   // Student Profile
@@ -252,64 +253,8 @@ Flow control is managed via Sliding Window protocol; congestion control uses Slo
     }
   ],
 
-  // Academic Study Materials & Documents
-  materials: [
-    {
-      id: "mat_1",
-      title: "Operating Systems Principles (10th Ed) - Silberschatz",
-      subject: "Operating Systems",
-      category: "Textbook",
-      type: "pdf",
-      description: "Official textbook reference covering kernels, CPU scheduling, synchronization, and storage.",
-      url: "https://example.com/books/os-silberschatz.pdf",
-      tags: ["Textbook", "Reference", "OS"],
-      uploadedDate: "2026-08-20"
-    },
-    {
-      id: "mat_2",
-      title: "Database System Concepts Slides & Cheatsheet",
-      subject: "DBMS",
-      category: "Lecture Notes",
-      type: "doc",
-      description: "Concise summary of relational algebra, ER diagrams, SQL constraints, and transaction ACID properties.",
-      url: "https://example.com/notes/dbms-summary.docx",
-      tags: ["SQL", "Relational", "ACID"],
-      uploadedDate: "2026-08-28"
-    },
-    {
-      id: "mat_3",
-      title: "MIT 6.006: Introduction to Algorithms Video Lectures",
-      subject: "Data Structures & Algorithms",
-      category: "Video Course",
-      type: "video",
-      description: "Complete MIT OpenCourseWare lecture series by Prof. Erik Demaine.",
-      url: "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/",
-      tags: ["MIT", "Video", "Algorithms"],
-      uploadedDate: "2026-08-15"
-    },
-    {
-      id: "mat_4",
-      title: "Computer Networking: A Top-Down Approach (Kurose & Ross)",
-      subject: "Computer Networks",
-      category: "Textbook",
-      type: "book",
-      description: "Standard networking reference detailing application, transport, network, and link layers.",
-      url: "https://example.com/books/kurose-ross.pdf",
-      tags: ["Networking", "Sockets", "Protocols"],
-      uploadedDate: "2026-08-22"
-    },
-    {
-      id: "mat_5",
-      title: "Hands-On Machine Learning with Scikit-Learn, Keras, and TF",
-      subject: "Machine Learning",
-      category: "Textbook",
-      type: "pdf",
-      description: "Practical guide by Aurélien Géron for building ML pipelines and deep neural architectures.",
-      url: "https://example.com/books/hands-on-ml.pdf",
-      tags: ["AI", "Python", "DeepLearning"],
-      uploadedDate: "2026-09-01"
-    }
-  ],
+  // Academic Study Materials & Documents (Full multi-chapter handbooks across all subjects)
+  materials: STUDY_MATERIALS_BANK,
 
   // Curated Learning Resources Directory
   resources: [
